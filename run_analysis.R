@@ -81,26 +81,26 @@ test.data.df <- cbind(activity.test.df, test.data.df)
 ##
 
 master.dataset.df <- rbind(training.data.df, test.data.df)
-names(master.dataset.df) <- c('activity.ID', data.columns.labels.df$columnDescription)
+
+## Use the columnDescription values to create descriptive variable names for the data set.
+## Due to the prior manibulations for adding the activity ID, we already have a failry descriptive
+## variable name defined, so we will start naming the data columns with the second column
+names(master.dataset.df)[2:ncol(master.dataset.df)] <- c(data.columns.labels.df$columnDescription)
+
+## Merge the activity labels dataframe to the data set. This maps the approrpiate activity decription
+## to the activity ID of the row.
 master.dataset.df <- merge(activity.labels.df, master.dataset.df, by.x='activity.ID', by.y='activity.ID')
 
 ## Remove the activity ID column, we only need the text label to 
 ## identify the activity
 master.dataset.df <- subset(master.dataset.df, select=-c(activity.ID))
-View(master.dataset.df)
 
 ##
-## Assign descriptive column names for the data
+## Subset only those columns that are the means and standard deviations of the variables tracked
 ##
-## Take the column.Description column from the
-## data.columns.labels.df and assign the values of this column
-## as name values for the master dataset columns. The assumption here is
-## that the ordering of the data in data.column.labels.df is a one-to-one
-## mapping to the columns in the dataset eg item 1 of data.columns.labels.df maps
-## to the first variable in the master data set.
-##
-#names(master.dataset.df) <- data.columns.labels.df$columnDescription
+master.subset.df <- master.dataset.df[ , grepl('activity.Description$|mean[()]|std[()]', names(master.dataset.df)) ]
+
+#rm(master.dataset.df)
+#rm(activity.labels.df, features.txt, data.columns.labels.df, subjects.test.df, subjects.train.df, activity.test.df, activity.train.df, training.data.df, test.data.df)
 
 
-# rm(master.dataset.df)
-# rm(activity.labels.df, features.txt, data.columns.labels.df, subjects.test.df, subjects.train.df, activity.test.df, activity.train.df, training.data.df, test.data.df)
