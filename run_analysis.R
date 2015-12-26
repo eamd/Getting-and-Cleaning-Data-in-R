@@ -100,7 +100,5 @@ master.dataset.df <- subset(master.dataset.df, select=-c(activity.ID))
 ##
 master.subset.df <- master.dataset.df[ , grepl('activity.Description$|mean[()]|std[()]', names(master.dataset.df)) ]
 
-#rm(master.dataset.df)
-#rm(activity.labels.df, features.txt, data.columns.labels.df, subjects.test.df, subjects.train.df, activity.test.df, activity.train.df, training.data.df, test.data.df)
 
 
