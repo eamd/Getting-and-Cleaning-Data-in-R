@@ -1,7 +1,7 @@
 # Code Book
 
 * [Overview](#user-content-overview)
-* [Description of Script](#user-content-description-of-script)
+* [Description of the Script](#user-content-description-of-the-script)
 * [Description of Dataset Variables](#user-content-description-of-dataset-variables)
 
   + [Summary Dataset Variable Descriptions - msdf](#user-content-summary-dataset-variable-descriptions---msdf)
@@ -44,7 +44,7 @@ The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_tr
 
 More detailed information on this study and the data sets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
-## Description of Script
+## Description of the Script
 
 The script will take the data sets provided and perform the following tasks:
 
