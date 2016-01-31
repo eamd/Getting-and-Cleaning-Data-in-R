@@ -142,5 +142,4 @@ rm(columnLabelText)
 ## Calculate the mean
 ##
 msdf.summ <- group_by(msdf, subject, activity) %>% summarise_each(funs(mean))
-rm(msdf)
 
