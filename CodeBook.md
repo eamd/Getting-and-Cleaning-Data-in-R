@@ -1,5 +1,7 @@
 # Code Book
 
+run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
 ## Description of Dataset Variables
 
 Two data sets are created in with this script:
@@ -11,6 +13,17 @@ Below are summaries of each variable tracked. Additionally, text files containin
 
 * codebook-msdf.txt
 * codebook-msdf_summ.txt
+
+### Activity Categories
+
+The following are the activity categories measured.
+
+* WALKING
+* WALKING_UPSTAIRS
+* WALKING_DOWNSTAIRS
+* SITTING
+* STANDING
+* LAYING
 
 ### Summary Dataset Variable Descriptions - msdf
 
