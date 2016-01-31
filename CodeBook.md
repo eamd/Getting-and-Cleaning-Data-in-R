@@ -3,15 +3,12 @@
 * [Overview](#user-content-overview)
 * [Description of the Script](#user-content-description-of-the-script)
 * [Description of Dataset Variables](#user-content-description-of-dataset-variables)
-
   + [Summary Dataset Variable Descriptions - msdf](#user-content-summary-dataset-variable-descriptions---msdf)
-  
   + [Summary Dataset Variable Descriptions - msdf.summ](#user-content-summary-dataset-variable-descriptions---msdfsumm)
-  
   
 ## Overview
 
-run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones dataset](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
 The source dataset includes the following files:
 
@@ -42,24 +39,55 @@ The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_tr
 
 * 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
-More detailed information on this study and the data sets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
+More detailed information on this study and the datasets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
 ## Description of the Script
 
-The script will take the data sets provided and perform the following tasks:
+The script will take the datasets provided and perform the following tasks:
 
-* Merges the training and the test sets to create one data set.
+* Merges the training and the test sets to create one dataset.
 * Extracts only the measurements on the mean and standard deviation for each measurement.
-* Uses descriptive activity names to name the activities in the data set
-* Appropriately labels the data set with descriptive variable names.
-* From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+* Uses descriptive activity names to name the activities in the dataset
+* Appropriately labels the dataset with descriptive variable names.
+* From the dataset in step 4, creates a second, independent tidy dataset with the average of each variable for each activity and each subject.
+
+The script contains two functions:
+
+* pkgTest - it checks to see if a specified package is installed, and if not, it will install it. It then calls the library() function to load the package.
+* cleanLabels - a set of instructions for "tidying up column label names"
+
+The specified goals for this script are accomplished as follows:
+
+1. Load the specified packages - dplyr, readr, tidyr to provide the needed functionality for manipulating the data,
+
+2. Load the activity labels into a dataframe_table - **activity.labels.df**. Column names are assigned as well - activity.ID, activity
+
+3. The names for the column names are loaded into a dataframe_table - **data.columns.labels.df**. Additionally, column names are assigned - column.ID, columnDescription.
+
+4. Load the training data from the **train** sub-folder in the data folder. Subject IDs for the training data are loaded into **subjects.train.df**. Activity IDs for the training data are loaded into **activity.train.df**. The actual training data is loaded into **training.data.df**.
+
+5. The same process takes place for test data. All data sources are located in the **test** sub-folder. dataframe names are the same as for the training dataset, except where in the name it is _train_, substitute it with _test_. For example the test version of for actual data, the name would be **testing.data.df**.
+
+6. The ID's for subjects and activities are prepended to the datasets. We are assuming the rows for each of the dataframes in the training and testing datasets match up. So we can assume that row 1 of **activity.train.df** corresponds to row 1 of **subjects.train.df** and row 1 of **training.data.df**.
+
+7. The testing and training data is combined into one dataset, **master.dataset.df**.
+
+8. The data sources for the dataframes did not contain meaningful column names. The script assigns the **data.columns.labels.df** *Description* column to the names attribute of **master.dataset.df**. 
+
+9. The activity IDs in the *activity* column of **master.dataset.df** are replaced with descriptive text pulled from **activity.labels.df**.
+
+10. We next need to extract a subset of columns to work with. Only the columns ending in mean() or std(), along with the subject and activity columns are assigned to a new dataframe, **msdf**.
+
+11. Column names in **msdf** are cleaned up and made more meaningful. *T* is expanded to *time*, *f* is expanded to *frequency*, *Acc* is expanded to *Acceleration*, *-* are replaced with '*.*', '*()*' is removed.
+
+12. Finally, the **msdf** is grouped by subject, then by activity within subject, and the average is calculated for each variable tracked. This dataset is stored in **msdf.summ**.
 
 ## Description of Dataset Variables
 
-Two data sets are created in with this script:
+Two datasets are created in with this script:
 
-* msdf - a data frame containing observation data for each subject and activity for the tracked columns containing mean and standard deveiation data. Detailed descriptions of the columns can be found in the file **features_info.txt**.
-* msdf.summ - a data frame that groups the data by subject and activity within subject, then calculating the mean for each column tracked.
+* msdf - a dataframe containing observation data for each subject and activity for the tracked columns containing mean and standard deveiation data. Detailed descriptions of the columns can be found in the file **features_info.txt**.
+* msdf.summ - a dataframe that groups the data by subject and activity within subject, then calculating the mean for each column tracked.
 
 Below are summaries of each variable tracked. Additionally, text files containing this information can be found:
 
