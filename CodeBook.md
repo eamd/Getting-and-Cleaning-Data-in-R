@@ -2,9 +2,9 @@
 
 * [Description of Dataset Variables](#user-content-description-of-dataset-variables)
 
-  +[Summary Dataset Variable Descriptions - msdf](#user-content-summary-dataset-variable-descriptions---msdf)
+  + [Summary Dataset Variable Descriptions - msdf](#user-content-summary-dataset-variable-descriptions---msdf)
   
-  +[Summary Dataset Variable Descriptions - msdf.summ](#user-content-summary-dataset-variable-descriptions---msdfsumm)
+  + [Summary Dataset Variable Descriptions - msdf.summ](#user-content-summary-dataset-variable-descriptions---msdfsumm)
 
 run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
