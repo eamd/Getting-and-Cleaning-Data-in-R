@@ -16,6 +16,24 @@ pkgTest <- function(x)
   library(x, character.only = TRUE)
 }
 
+
+#
+# Reformat some of the abbreviated text used for the column labels
+# Add additional lines for making changes as needed.
+#
+cleanLabels <- function(x)
+{
+  tmp <- sub('tBodyAcc','time.Body.Acceleration',x)
+  tmp <- as.character(gsub('tGravityAcc','time.Gravity.Acceleration',tmp))
+  tmp <- as.character(gsub('fBodyAcc','frequenct.Body.Acceleration',tmp))
+  tmp <- as.character(gsub('fBody','frequency.Body.',tmp))
+  tmp <- as.character(gsub('tBody','time.Body.',tmp))
+  tmp <- as.character(gsub('-','.',tmp))
+  tmp <- as.character(gsub('[()]','',tmp))
+  tmp
+  }
+
+
 #
 # Load the desired libraries
 #
@@ -99,15 +117,30 @@ rm(data.columns.labels.df)
 master.dataset.df <- merge(activity.labels.df, master.dataset.df, by.x='activity.ID', by.y='activity.ID')
 rm(activity.labels.df)
 
-## Remove the activity ID column, we only need the text label to 
-## identify the activity
-#master.dataset.df <- subset(master.dataset.df, select=-c(activity.ID))
-#View(master.dataset.df)
-#master.dataset.df <- select(master.dataset.df,-activity.ID)
-#View(master.dataset.df)
 
 ##
 ## Subset only those columns that are the means and standard deviations of the variables tracked
 ##
-master.subset.df <- master.dataset.df[ , grepl('activity$|subject$|mean[()]|std[()]', names(master.dataset.df)) ]
+#master.subset.df <- master.dataset.df[ , grepl('activity$|subject$|mean[()]|std[()]', names(master.dataset.df)) ]
+msdf <- master.dataset.df[ , grepl('activity$|subject$|mean[()]|std[()]', names(master.dataset.df)) ]
+rm(master.dataset.df)
+
+
+##
+## Let's clean up the column labels.
+## Use the function cleanLabels to reformat some of the text
+##
+columnLabelText <- names(msdf)
+#dfx <- apply(data.columns.labels.df[,2],2,cleanLabels)
+columnLabelText <- sapply(columnLabelText,FUN=cleanLabels, USE.NAMES = FALSE)
+names(msdf) <- columnLabelText
+rm(columnLabelText)
+
+
+##
+## Summarize the variable data by subject, then by activity within subject
+## Calculate the mean
+##
+msdf.summ <- group_by(msdf, subject, activity) %>% summarise_each(funs(mean))
+rm(msdf)
 
