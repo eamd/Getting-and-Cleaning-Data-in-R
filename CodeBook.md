@@ -1,6 +1,7 @@
 # Code Book
 
 * [Overview](#user-content-overview)
+* [Description of Script](#user-content-description-of-script)
 * [Description of Dataset Variables](#user-content-description-of-dataset-variables)
 
   + [Summary Dataset Variable Descriptions - msdf](#user-content-summary-dataset-variable-descriptions---msdf)
@@ -41,14 +42,23 @@ The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_tr
 
 * 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
-More detailed information on this study and the data sets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
-.
+More detailed information on this study and the data sets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
+
+## Description of Script
+
+The script will take the data sets provided and perform the following tasks:
+
+* Merges the training and the test sets to create one data set.
+* Extracts only the measurements on the mean and standard deviation for each measurement.
+* Uses descriptive activity names to name the activities in the data set
+* Appropriately labels the data set with descriptive variable names.
+* From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ## Description of Dataset Variables
 
 Two data sets are created in with this script:
 
-* msdf - a data frame containing observation data for each subject and activity for the tracked columns containing mean and standard deveiation.
+* msdf - a data frame containing observation data for each subject and activity for the tracked columns containing mean and standard deveiation data. Detailed descriptions of the columns can be found in the file **features_info.txt**.
 * msdf.summ - a data frame that groups the data by subject and activity within subject, then calculating the mean for each column tracked.
 
 Below are summaries of each variable tracked. Additionally, text files containing this information can be found:
