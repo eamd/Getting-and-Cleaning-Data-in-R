@@ -1,6 +1,6 @@
 # Code Book
 
-[Description of Dataset Variables](description-of-dataset-variables)
+[Description of Dataset Variables](#user-content-description-of-dataset-variables)
 
 run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
