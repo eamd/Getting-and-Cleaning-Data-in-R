@@ -1,9 +1,10 @@
 # Code Book
 
+[Description of Dataset Variables](#Description of Dataset Variables)
+
 run_analysis.R performs several manipulations on datasets created by the [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
-The dataset includes the following files:
-=========================================
+The source dataset includes the following files:
 
 * 'README.txt'
 
@@ -31,6 +32,9 @@ The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_tr
 * 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
 
 * 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
+
+More detailed information on this study and the data sets created can be found at the [study's website](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+.
 
 ## Description of Dataset Variables
 
